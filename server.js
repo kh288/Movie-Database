@@ -22,38 +22,33 @@ const db = mysql.createConnection({
         user: 'root',
         // MySQL password
         password: 'password',
-        database: 'courses_db'
+        database: 'movie_db'
     },
-    console.log(`Connected to the courses_db database.`)
+    console.log(`Connected to the movie_db database.`)
 );
 
 app.get('/api/new-movie', (req, res) => {
-    res.json('bark')
+    res.json('New Movies section');
+    db.query(`SELECT * FROM movies`, 3, (error, result => {
+        error ? console.log(error) : console.log("affectedRows: ", result.affectedRows);
+    }));
 });
 
 app.post('/api/new-movie', (req, res) => {
-    res.json('meow')
+    res.json('Adding New Movie')
 });
 
 app.get('/api/movie-reviews', (req, res) => {
-    res.json('tweet')
-
+    res.json('Viewing Movie Reviews')
 });
 
 app.put('/api/review/:id', (req, res) => {
-    res.json('squeaaak')
-
+    res.json('removes a review?')
 });
 
 app.delete('/api/movie/:id', (req, res) => {
-    res.json('chirp')
-
+    res.json('Removes a movie')
 });
-
-
-
-
-
 
 // Default response for any other request (Not Found)
 app.use((req, res) => {
