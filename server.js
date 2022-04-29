@@ -16,23 +16,50 @@ app.use(express.json());
 // delete '/api/movie/:id'
 
 // Connect to database
-const db = mysql.createConnection(
-  {
-    host: 'localhost',
-    // MySQL username,
-    user: 'root',
-    // MySQL password
-    password: 'password',
-    database: 'courses_db'
-  },
-  console.log(`Connected to the courses_db database.`)
+const db = mysql.createConnection({
+        host: 'localhost',
+        // MySQL username,
+        user: 'root',
+        // MySQL password
+        password: 'password',
+        database: 'courses_db'
+    },
+    console.log(`Connected to the courses_db database.`)
 );
+
+app.get('/api/new-movie', (req, res) => {
+    res.json('bark')
+});
+
+app.post('/api/new-movie', (req, res) => {
+    res.json('meow')
+});
+
+app.get('/api/movie-reviews', (req, res) => {
+    res.json('tweet')
+
+});
+
+app.put('/api/review/:id', (req, res) => {
+    res.json('squeaaak')
+
+});
+
+app.delete('/api/movie/:id', (req, res) => {
+    res.json('chirp')
+
+});
+
+
+
+
+
 
 // Default response for any other request (Not Found)
 app.use((req, res) => {
-  res.status(404).end();
+    res.status(404).end();
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });
